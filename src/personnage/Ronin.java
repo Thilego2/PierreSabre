@@ -7,7 +7,7 @@ public class Ronin extends Humain {
 		super(nom, boisson, argent);
 	}
 	
-	public void donner(Commerçant beneficiaire) {
+	public void donner(Commercant beneficiaire) {
 		parler(beneficiaire.getNom()+" prend ces "+getArgent()/10+" sous.");
 		beneficiaire.recevoir(getArgent()/10);
 		perdreArgent(getArgent()/10);

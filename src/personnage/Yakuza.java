@@ -2,7 +2,7 @@ package personnage;
 
 public class Yakuza extends Humain{
 	private String clan;
-	private int reputation = 4;
+	private int reputation = 0;
 	
 	public int getReputation() {
 		return reputation;
@@ -13,7 +13,7 @@ public class Yakuza extends Humain{
 		this.clan=clan;
 	}
 	
-	public void extorquer(Commerçant victime) {
+	public void extorquer(Commercant victime) {
 		parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par là ?");
 		parler(victime.getNom()+", si tu tiens à la vie donne moi ta bourse !");
 		gagnerArgent(victime.getArgent());

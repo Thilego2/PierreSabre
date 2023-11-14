@@ -4,11 +4,14 @@ public class Humain {
 	private String nom;
 	private String boisson;
 	private int argent;
+	protected int nbConnaissance=0;
+	protected String[] memoire;
 	
 	public Humain(String nom,String boisson,int argent) {
 		this.nom = nom;
 		this.boisson = boisson;
 		this.argent = argent;
+		memoire = new String[30];
 	}
 	
 	public String getNom() {
@@ -19,7 +22,7 @@ public class Humain {
 		return argent;
 	}
 	
-	public void parler(String texte) {
+	protected void parler(String texte) {
 		System.out.println("("+nom+") - "+texte);
 	}
 	
@@ -46,13 +49,35 @@ public class Humain {
 		
 	}
 	
-	public void gagnerArgent(int gain) {
+	protected void gagnerArgent(int gain) {
 		argent+=gain;
 	}
 	
-	public void perdreArgent(int perte) {
+	protected void perdreArgent(int perte) {
 		argent-=perte;
 	}
 	
+	public void faireConnaissance(Humain humain) {
+		direBonjour();
+		humain.repondre(this);
+		memoriser(humain);
+	}
+	
+	private void memoriser(Humain humain) {
+		memoire[nbConnaissance]=humain.getNom();
+		nbConnaissance++;
+		if (nbConnaissance==30) { nbConnaissance=0; }
+	}
+	
+	private void repondre(Humain humain) {
+		direBonjour();
+		memoriser(humain);
+	}
 
+	public void listerConnaissance() {
+		parler("Je connais beaucoup de monde dont : ");
+		for (int i=0;i<nbConnaissance;i++) {
+			parler(memoire[i]+", ");
+		}
+	}
 }
